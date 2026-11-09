@@ -1,0 +1,26 @@
+{
+  "name": "git-studio-desktop",
+  "productName": "Git Studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Opens Git Studio in its own window. Starts the backend for you.",
+  "author": "Git Studio",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "npm run build --prefix .. && node prepare-backend.js && electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.gitstudio.desktop",
+    "productName": "Git Studio",
+    "directories": { "output": "release" },
+    "files": ["main.js", "package.json"],
+    "extraResources": [{ "from": "stage", "to": "app-server", "filter": ["**/*"] }],
+    "win": { "target": "nsis" },
+    "nsis": { "artifactName": "Git-Studio-Setup-${version}.exe" }
+  }
+}

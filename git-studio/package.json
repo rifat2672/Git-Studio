@@ -1,0 +1,17 @@
+{
+  "name": "git-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Manage many git projects with buttons: GitHub upload, branches, merge, history graph, versions, and Claude/Codex fixes",
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend && npm run build -w backend",
+    "start": "node backend/dist/server.js",
+    "test": "npm test -w backend",
+    "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
